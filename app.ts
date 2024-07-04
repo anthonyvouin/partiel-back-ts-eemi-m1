@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import userRoute from "./src/routes/user";
 import contactRoute from "./src/routes/contact";
+import eventRoute from "./src/routes/event";
+
 import connectDB from "./config/db.config";
 
 // Serveur
@@ -21,6 +23,8 @@ app.use(cors());
 //Appel route
 app.use("/contact", contactRoute);
 app.use("/user", userRoute);
+app.use("/event", eventRoute);
+
 
 app.listen(port, () => {
   console.log(`Le serveur écoute sur le port ${port}`);
