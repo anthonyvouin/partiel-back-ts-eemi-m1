@@ -1,3 +1,6 @@
+## Prérequis
+
+Assurez-vous d'avoir Node.js version 20.9.0 installé sur votre ordinateur avant de suivre les étapes ci-dessous.
 
 ## Installation
 
