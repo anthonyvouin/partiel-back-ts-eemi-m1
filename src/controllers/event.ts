@@ -26,3 +26,17 @@ export const createEvent = async (
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
+
+
+export const getAllEvents = async (req: Request, res: Response) => {
+  try {
+    const contacts: EventDocument[] = await Event.find();
+    res.json(contacts);
+  } catch (error: any) {
+    console.error(
+      "Erreur lors de la récupération des événements:",
+      error.message
+    );
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
