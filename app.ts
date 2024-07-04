@@ -1,7 +1,6 @@
 import express, { Request, Response, Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import testRoute from "./src/routes/test";
 import userRoute from "./src/routes/user";
 import contactRoute from "./src/routes/contact";
 import connectDB from "./config/db.config";
@@ -20,7 +19,6 @@ app.use(cors());
 // Middleware pour servir les fichiers statiques du dossier 'uploads'
 
 //Appel route
-app.use("/test", testRoute);
 app.use("/contact", contactRoute);
 app.use("/user", userRoute);
 
