@@ -25,11 +25,20 @@ Créer un fichier .env à la racine du projet.
 
 Remplacez <lien_vers_votre_base_de_donnees_MongoDB> par le lien réel vers votre base de données NoSQL MongoDB.
 
-Démmarage du server
+
+##Démmarage du server
 
 
 ```bash
 npm start
+```
+
+## Génération de données pour la base de données
+
+Pour générer des données dans la base de données, taper la commande suivante :
+
+```bash
+npx ts-node src/services/seed.ts
 ```
 
 
