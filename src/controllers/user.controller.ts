@@ -22,3 +22,18 @@ export const createUser = async (req: Request<any, any, UserProps, any>, res: Re
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
+
+
+
+export const getAllUser = async (req: Request, res: Response) => {
+  try {
+    const contacts: UserDocument[] = await User.find();
+    res.json(contacts);
+  } catch (error: any) {
+    console.error(
+      "Erreur lors de la récupération des contacts :",
+      error.message
+    );
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
