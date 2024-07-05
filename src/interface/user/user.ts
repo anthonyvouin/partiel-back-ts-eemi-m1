@@ -6,5 +6,5 @@ export interface UserProps {
   contactTelephonique: Number;
   email: string;
   responsableLegal?: string;
-  dateCreation: Date; // Nouvelle propriété ajoutée
+  dateCreation: Date; 
 }

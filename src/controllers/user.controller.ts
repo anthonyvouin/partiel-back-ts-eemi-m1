@@ -37,3 +37,39 @@ export const getAllUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
+
+
+export const getByDay = async (req: Request, res: Response) => {
+  try {
+    const counts = await User.aggregate([
+      {
+        $group: {
+          _id: {
+            $dateToString: { format: '%Y-%m-%d', date: '$dateCreation' }
+          },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { _id: 1 } } // Trie par date croissante
+    ]);
+
+    // Vérifiez les résultats de l'agrégation
+    console.log('Résultats de l\'agrégation :', counts);
+
+    // Si counts est vide ou null, cela pourrait indiquer un problème avec l'agrégation
+    if (!counts) {
+      return res.status(404).json({ message: 'Aucune donnée trouvée' });
+    }
+
+    // Crée un tableau avec les résultats formatés pour inclure la date et le nombre d'utilisateurs inscrits
+    const formattedCounts = counts.map((item: any) => ({
+      date: item._id,
+      count: item.count
+    }));
+
+    res.json(formattedCounts);
+  } catch (error: any) {
+    console.error('Erreur lors du comptage des utilisateurs par jour :', error.message);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
