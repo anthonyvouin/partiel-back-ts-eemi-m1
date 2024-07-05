@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import connectDB from "../../config/db.config";
+import { Contact } from "../models/contact.model";
+import { Event } from "../models/event.model";
+import { User } from "../models/user.model";
 
-import { ContactDocument, Contact } from "../models/contact.model";
-import { EventDocument, Event } from "../models/event.model";
-import { User, UserDocument } from "../models/user.model";
-import connectDB
-    from "../../config/db.config";
 dotenv.config();
 
 const seedDatabase = async () => {
@@ -34,7 +33,6 @@ const seedDatabase = async () => {
         date: new Date(),
       },
     ];
-    await Contact.insertMany(contacts);
 
     const events = [
       {
@@ -43,7 +41,7 @@ const seedDatabase = async () => {
         location: "Central Park",
         description: "A fun festival with music and food.",
         capacity: 5000,
-        finished: false,
+        finished: true,
       },
       {
         name: "Tech Conference",
@@ -54,6 +52,8 @@ const seedDatabase = async () => {
         finished: false,
       },
     ];
+
+    await Contact.insertMany(contacts);
     await Event.insertMany(events);
 
     const users = [
@@ -76,11 +76,12 @@ const seedDatabase = async () => {
         responsableLegal: "Marie Martin",
       },
     ];
+
     await User.insertMany(users);
 
     console.log("Database seeded successfully");
   } catch (error) {
-    console.error("Error seeding database:")
+    console.error("Error seeding database:", error);
   } finally {
     mongoose.connection.close();
   }
