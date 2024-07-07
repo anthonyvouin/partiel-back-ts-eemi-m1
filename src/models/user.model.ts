@@ -18,7 +18,7 @@ const userSchema = new Schema<UserDocument, UserModel>({
   contactTelephonique: { type: String, required: true },
   email: { type: String, required: true },
   responsableLegal: { type: String },
-  dateCreation: { type: Date, default: Date.now }, // Utilisation de default pour générer automatiquement la date de création
+  dateCreation: { type: Date, default: Date.now }, 
 });
 
 // Modèle d'utilisateur utilisant le schéma défini ci-dessus

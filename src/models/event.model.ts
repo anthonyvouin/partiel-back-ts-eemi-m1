@@ -11,7 +11,7 @@ const eventSchema = new Schema<EventDocument, EventModel>({
   location: { type: String, required: true },
   description: { type: String, required: true },
   capacity: { type: Number, required: true },
-  finished: { type: Boolean, default: false }, // Par défaut, l'événement n'est pas terminé
+  finished: { type: Boolean, default: false },
 });
 
 const Event = mongoose.model<EventDocument, EventModel>("Event", eventSchema);
